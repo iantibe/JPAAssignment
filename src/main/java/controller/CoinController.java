@@ -11,8 +11,10 @@ import model.CoinItem;
 
 public class CoinController {
 	
+	//create entity manager
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JPAAssignment");
 	
+	//get list from database
 	public List<CoinItem> showCoins() {
 		EntityManager em = emfactory.createEntityManager();
 		List<CoinItem> coinlist = em.createQuery("SELECT i FROM CoinItem i").getResultList();
@@ -20,6 +22,7 @@ public class CoinController {
 		
 	}
 	
+	//insert items into database
 	public void insert(CoinItem coin) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -28,6 +31,7 @@ public class CoinController {
 		em.close();
 	}
 	
+	//delete from database
 	public void delete(CoinItem coin) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -42,6 +46,7 @@ public class CoinController {
 		
 	}
 	
+	//search and return list by coin type
 	public List<CoinItem> searchByType(String type) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -52,6 +57,7 @@ public class CoinController {
 		return list;
 	}
 	
+	//search and return list by price
 	public List<CoinItem> searchByPrice(double price) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -62,6 +68,7 @@ public class CoinController {
 		return list;
 	}
 	
+	//search by id number and return list
 	public CoinItem searchById(int id) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -70,6 +77,7 @@ public class CoinController {
 		return result;
 	}
 	
+	//update record
 	public void updateCoin(CoinItem item) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
