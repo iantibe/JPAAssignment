@@ -1,25 +1,34 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id; 
+import javax.persistence.Table;
+
+@Entity
+@Table(name="coininfo")
 public class CoinItem {
 	
 		//properties
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		@Column(name="ID")
 		private int id;
+		@Column(name="TYPE")
 		private String type;
+		@Column(name="PRICE")
 		private double price;
-		private String location;
-		private String condition;
-		
+						
 		//constructor
 		public CoinItem() {
 			super();
 		}
 		
-		public CoinItem(int id, String type, double price, String location, String condition) {
-			this.id = id;
+		public CoinItem(String type, double price) {
 			this.type = type;
 			this.price = price;
-			this.location = location;
-			this.condition = condition;
 		}
 
 		//getters and setters
@@ -47,29 +56,18 @@ public class CoinItem {
 			this.price = price;
 		}
 
-		public String getLocation() {
-			return location;
-		}
-
-		public void setLocation(String location) {
-			this.location = location;
-		}
-
-		public String getCondition() {
-			return condition;
-		}
-
-		public void setCondition(String condition) {
-			this.condition = condition;
-		}
-		
 		//helper methods
 		public String returnDetails() {
 			return "Id Number: " + this.getId() + "\n" +
 					"Coin Type: " + this.getType() + "\n" + 
-					"Coin Price: " + this.getPrice() + "\n" + 
-					"Coin Location in inventory: " + this.getLocation() + "\n" +
-					"Coin Condition: " + this.getCondition();
+					"Coin Price: " + this.getPrice(); 
+					
+					
+		}
+		
+		public String returnDetailNoId() {
+			return "Coin Type: " + this.getType() + "\n" + 
+					"Coin Price: " + this.getPrice(); 
 		}
 
 }
